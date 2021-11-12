@@ -45,8 +45,7 @@ def color_dict_to_hex_string(color_dict):
 def convert_theme(theme_file):
     filepath = Path(theme_file).resolve()
     if not filepath.exists():
-        print(f"File {theme_file} not found")
-        exit(1)
+        raise FileNotFoundError(f"Theme file '{theme_file}' not found")
 
     with filepath.open(mode="rb") as file:
         iterm = plistlib.load(file)
@@ -65,8 +64,7 @@ def convert_theme(theme_file):
 def parse(source, target):
     source_path = Path(source).resolve()
     if not source_path.is_dir():
-        print(f"Source path {source} is not a directory")
-        exit(1)
+        raise NotADirectoryError(f"Source path '{source}' is not a directory")
 
     target_path = Path(target).resolve()
     if not target_path.exists():
@@ -90,7 +88,7 @@ if __name__ == "__main__":
 
     try:
         parse(args.source, args.target)
-    except FileNotFoundError as e:
+    except (NotADirectoryError, FileNotFoundError) as e:
         print(e)
         exit(1)
 
