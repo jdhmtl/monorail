@@ -11,22 +11,22 @@ GREEN = "Green Component"
 BLUE = "Blue Component"
 
 mappings = {
-    "Ansi 0 Color": "0",
-    "Ansi 1 Color": "1",
-    "Ansi 2 Color": "2",
-    "Ansi 3 Color": "3",
-    "Ansi 4 Color": "4",
-    "Ansi 5 Color": "5",
-    "Ansi 6 Color": "6",
-    "Ansi 7 Color": "7",
-    "Ansi 8 Color": "8",
-    "Ansi 9 Color": "9",
-    "Ansi 10 Color": "10",
-    "Ansi 11 Color": "11",
-    "Ansi 12 Color": "12",
-    "Ansi 13 Color": "13",
-    "Ansi 14 Color": "14",
-    "Ansi 15 Color": "15",
+    "Ansi 0 Color": "black",
+    "Ansi 1 Color": "red",
+    "Ansi 2 Color": "green",
+    "Ansi 3 Color": "yellow",
+    "Ansi 4 Color": "blue",
+    "Ansi 5 Color": "magenta",
+    "Ansi 6 Color": "cyan",
+    "Ansi 7 Color": "white",
+    "Ansi 8 Color": "brightBlack",
+    "Ansi 9 Color": "brightRed",
+    "Ansi 10 Color": "brightGreen",
+    "Ansi 11 Color": "brightYellow",
+    "Ansi 12 Color": "brightBlue",
+    "Ansi 13 Color": "brightMagenta",
+    "Ansi 14 Color": "brightCyan",
+    "Ansi 15 Color": "brightWhite",
     "Background Color": "background",
     "Foreground Color": "foreground",
     "Cursor Color": "cursor",
@@ -57,7 +57,7 @@ def convert_theme(theme_file):
 
     for key, value in iterm.items():
         if key in mappings:
-            info["colors"].update({mappings.get(key): color_dict_to_hex_string(value)})
+            info["colors"].update({mappings.get(key): f"#{color_dict_to_hex_string(value)}"})
 
     return info
 
